@@ -1,0 +1,25 @@
+<!-- editor.component.html -->
+<div class="editor-container">
+  <div class="editor-left">
+    <div class="draggable-item" *ngFor="let item of items" cdkDrag
+      [cdkDragData]="item" (cdkDragEnded)="onDrop($event)">
+      <ng-container *ngIf="item.type === 'text'">
+        <div [ngStyle]="{
+          'font-family': item.font,
+          'font-size.px': item.font_size,
+          'font-weight': item.bold ? 'bold' : 'normal',
+          'font-style': item.italic ? 'italic' : 'normal',
+          'text-decoration': (item.underline ? 'underline' : '') + (item.strikethrough ? ' line-through' : '')
+        }">
+          {{ item.value }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="item.type === 'image'">
+        <img [src]="item.value" alt="Image">
+      </ng-container>
+    </div>
+  </div>
+  <div class="editor-right">
+    <!-- Sağ taraftaki form burada olacak -->
+  </div>
+</div>
